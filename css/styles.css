@@ -9,6 +9,7 @@ body {
   display: none !important;
 }
 
+/* Header */
 header {
   padding: 1.5rem 1rem;
   display: flex;
@@ -30,6 +31,7 @@ header > button {
   margin-right: .5rem;
 }
 
+/* Main */
 main {
   padding: 1rem;
 }
@@ -65,13 +67,95 @@ form > svg {
 .container-filter {
   width: 50%;
   margin: 2rem 0;
-  padding: 1rem;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
   font-size: 14px;
   border-radius: 5px;
 }
 
-select {
+.select {
+  display: block;
   width: 100%;
-  height: 100%;
+  position: relative;
+  user-select: none;
+  border-radius: 4px;
+}
+
+.select > .header {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: .5rem 1rem;
+  position: relative;
+  width: auto;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: inherit;
+  border-color: inherit;
+  border-radius: inherit;
+}
+
+.select > .header > span {
+  flex: 1;
+  padding: 0.5em;
+}
+
+.select[data-open] > .header > svg {
+  transform: rotate(180deg);
+}
+
+.select > datalist {
+  display: none;
+  appearance: none;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+.select[data-open] > datalist {
+  display: initial;
+}
+
+.select > .header > select {
+  display: none;
+  appearance: none;
+  width: 100%;
+  flex: 1;
+}
+
+.select > .header > select > option {
+  display: none;
+}
+
+.select > datalist > .option {
+  background-color: white;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.select > datalist > .option:first-of-type {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.select > datalist > .option:last-of-type {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.select > datalist > .option:hover,
+.select > datalist > .option:focus,
+.select > datalist > .option:checked {
+  background-color: hsl(200, 15%, 8%);
+  color: white;
+}
+
+.select > datalist > .option[data-checked] {
+  background-color: hsl(200, 15%, 8%);
+  color: white;
+}
+
+.label {
+  padding: 0.25em;
 }

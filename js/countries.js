@@ -37,10 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const http = new XMLHttpRequest();
 
   http.onload = () => {
-    console.log(http.status);
     if (http.status === 200 && http.readyState === 4) {
       const json = JSON.parse(http.response);
-      console.log(json);
       populateCountriesList(json, listCountries);
     } else {
       console.log(http.responseText);
