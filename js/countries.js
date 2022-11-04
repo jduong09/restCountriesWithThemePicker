@@ -1,3 +1,74 @@
+const createDetailPage = (objCountry) => {
+  console.log(objCountry);
+  const divDetail = document.createElement('div');
+  divDetail.classList.add('detail');
+
+  const detailImg = document.createElement('img');
+  detailImg.src = objCountry.flags.png;
+  detailImg.alt = `flag of ${objCountry.name}`;
+
+  const detailHeader = document.createElement('h2');
+  detailHeader.innerHTML = objCountry.name;
+
+  const detailInfo1 = document.createElement('ul');
+  detailInfo1.innerHTML = `
+    <li>
+      <span>Native Name:</span>${objCountry.nativeName}
+    </li>
+    <li>
+      <span>Population:</span>${objCountry.population}
+    </li>
+    <li>
+      <span>Region:</span>${objCountry.region}
+    </li>
+    <li>
+      <span>Sub Region:</span>${objCountry.subregion}
+    </li>
+    <li>
+      <span>Capital:</span>${objCountry.capital}
+    </li>
+    `;
+
+  const detailInfo2 = document.createElement('ul');
+  detailInfo2.innerHTML = `
+    <li>
+      <span>Top Level Domain:</span>${objCountry.topLevelDomain[0]}
+    </li>
+    <li>
+      <span>Currencies:</span>${objCountry.currencies[0].name}
+    </li>
+    <li>
+      <span>Languages:</span>${objCountry.languages[0].name}
+    </li>
+  `;
+
+  const divBorderCountries = document.createElement('div');
+  divBorderCountries.innerHTML = `
+  <span>Border Countries:</span>`;
+
+  const ulBorderCountries = document.createElement('ul');
+  ulBorderCountries.classList.add('list-border-countries');
+
+  const regionalBloc = objCountry.regionalBlocs[0].acronym;
+  const alpha3code = objCountry.alpha3Code;
+
+  const request = new XMLHttpRequest();
+
+  request.onload = () => {
+    const response = JSON.parse(request.response);
+    console.log(response);
+  }
+
+  // `https://restcountries.com/v2//${regionalBloc.toLowerCase()}/${alpha3Code.toLowerCase()}`
+  request.open('GET', `https://restcountries.com/v2/alpha/${alpha3code.toLowerCase()}`);
+  request.send();
+
+
+  divDetail.append(detailImg, detailHeader, detailInfo1, detailInfo2, divBorderCountries);
+
+  return divDetail;
+}
+
 const populateCountriesList = (countries, listCountries) => {
   countries.forEach(country => {
     const listItem = document.createElement('li');
@@ -26,6 +97,29 @@ const populateCountriesList = (countries, listCountries) => {
     information.append(population, region, capital);
 
     listItem.append(imgCountry, name, information);
+
+    listItem.addEventListener('click', (e) => {
+      e.preventDefault();
+      const main = document.querySelector('main');
+      listCountries.classList.add('hide');
+
+      console.log(e.currentTarget);
+      const name = e.currentTarget.children[1].innerHTML;
+
+      const http = new XMLHttpRequest();
+
+      http.onload = () => {
+        response = JSON.parse(http.response);
+        const country = response[0];  
+       
+        const detailPage = createDetailPage(country);
+
+        main.append(detailPage);
+      }
+
+      http.open('GET', `https://restcountries.com/v3.1/name/${name}`);
+      http.send();
+    });
 
     listCountries.append(listItem);
   });
