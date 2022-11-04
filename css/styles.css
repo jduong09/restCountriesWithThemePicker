@@ -9,6 +9,10 @@ body {
   display: none !important;
 }
 
+header > button, .select > .header > svg, .select[data-open] > .header > svg, .select > datalist > .option, .item-country {
+  cursor: pointer;
+}
+
 /* Header */
 header {
   padding: 1.5rem 1rem;
@@ -87,11 +91,6 @@ form > svg {
   padding: .5rem 1rem;
   position: relative;
   width: auto;
-  box-sizing: border-box;
-  border-width: 1px;
-  border-style: inherit;
-  border-color: inherit;
-  border-radius: inherit;
 }
 
 .select > .header > span {
@@ -111,6 +110,7 @@ form > svg {
   left: 0;
   z-index: 2;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+  border-radius: 5px;
 }
 
 .select[data-open] > datalist {
@@ -131,7 +131,7 @@ form > svg {
 .select > datalist > .option {
   background-color: white;
   cursor: pointer;
-  padding: 0.5em;
+  padding: 0.25rem .5rem;
 }
 
 .select > datalist > .option:first-of-type {
@@ -158,4 +158,41 @@ form > svg {
 
 .label {
   padding: 0.25em;
+}
+
+.list-countries {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.item-country {
+  margin: 2rem 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+.item-country > img {
+  display: block;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.item-country > h2 {
+  padding: 1rem;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.div-information {
+  padding: 0 1rem 2rem 1rem;
+}
+
+.div-information > div {
+  margin: 0 0 .25rem 0;
+}
+
+.div-information > div > span {
+  margin-right: .25rem;
+  font-weight: 600;
 }

@@ -1,3 +1,5 @@
+import { addFilterFunctions } from './filter';
+
 const populateCountriesList = (countries, listCountries) => {
   countries.forEach(country => {
     const listItem = document.createElement('li');
@@ -15,13 +17,13 @@ const populateCountriesList = (countries, listCountries) => {
     information.classList.add('div-information');
 
     const population = document.createElement('div');
-    population.innerHTML = `<span>Population</span>${country.population}`;
+    population.innerHTML = `<span>Population:</span>${country.population}`;
 
     const region = document.createElement('div');
-    region.innerHTML = `<span>Region</span>${country.region}`;
+    region.innerHTML = `<span>Region:</span>${country.region}`;
 
     const capital = document.createElement('div');
-    capital.innerHTML = `<span>Capital</span>${country.capital}`;
+    capital.innerHTML = `<span>Capital:</span>${country.capital}`;
 
     information.append(population, region, capital);
 
@@ -40,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (http.status === 200 && http.readyState === 4) {
       const json = JSON.parse(http.response);
       populateCountriesList(json, listCountries);
+      addFilterFunctions();
     } else {
       console.log(http.responseText);
     }
