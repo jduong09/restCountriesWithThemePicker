@@ -1,5 +1,3 @@
-import { addFilterFunctions } from './filter';
-
 const populateCountriesList = (countries, listCountries) => {
   countries.forEach(country => {
     const listItem = document.createElement('li');
@@ -42,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (http.status === 200 && http.readyState === 4) {
       const json = JSON.parse(http.response);
       populateCountriesList(json, listCountries);
-      addFilterFunctions();
+      addFilterListener();
     } else {
       console.log(http.responseText);
     }
@@ -50,4 +48,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   http.open('GET', 'https://restcountries.com/v3.1/all');
   http.send();
+
 });

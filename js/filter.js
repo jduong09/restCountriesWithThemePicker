@@ -1,6 +1,7 @@
-export default function addFilterListener() {
+const addFilterListener = () => {
   const divOptions = document.getElementsByClassName('option');
   const listCountries = document.querySelector('.list-countries');
+  const allCountries = [...listCountries.children];
   const clonedList = [...listCountries.children];
   let filter = '';
 
@@ -10,6 +11,16 @@ export default function addFilterListener() {
     divOption.addEventListener('click', (e) => {
       console.log(e.currentTarget.getAttribute('data-value'));
       const region = e.currentTarget.getAttribute('data-value');
+
+
+      if (region === 'all') {
+        listCountries.innerHTML = '';
+        for (let k = 0; k < allCountries.length; k++) {
+          listCountries.appendChild(allCountries[k]);
+        }
+
+        return;
+      }
 
       const http = new XMLHttpRequest();
 
@@ -25,11 +36,15 @@ export default function addFilterListener() {
           console.log(clonedList);
           console.log(onlyNames);
 
-          clonedList.filter(country => {
-            return onlyNames.includes(country.name.official);
+          const filteredList = clonedList.filter(country => {
+            return onlyNames.includes(country.children[1].innerHTML);
           });
 
-          console.log(clonedList);
+          listCountries.innerHTML = '';
+          
+          for (let j = 0; j < filteredList.length; j++) {
+            listCountries.appendChild(filteredList[j]);
+          }
 
           /*
 
