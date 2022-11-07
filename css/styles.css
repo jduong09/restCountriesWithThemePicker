@@ -9,7 +9,7 @@ body {
   display: none !important;
 }
 
-header > button, .select > .header > svg, .select[data-open] > .header > svg, .select > datalist > .option, .item-country {
+header > button, .select > .header > svg, .select[data-open] > .header > svg, .select > datalist > .option, #btn-back, .item-country {
   cursor: pointer;
 }
 
@@ -160,6 +160,20 @@ form > svg {
   padding: 0.25em;
 }
 
+.container-filter.filter-hidden {
+  width: 85px;
+}
+
+#btn-back {
+  display: flex;
+  align-items: center;
+  padding: .5rem 1rem;
+}
+
+#arrow-left {
+  margin-right: .5rem;
+}
+
 .list-countries {
   width: 80%;
   margin: 0 auto;
@@ -195,4 +209,46 @@ form > svg {
 .div-information > div > span {
   margin-right: .25rem;
   font-weight: 600;
+}
+
+.detail > img {
+  display: block;
+}
+
+.detail > h2 {
+  font-weight: 900;
+  margin: 1.5rem 0;
+  font-size: 1.25rem;
+}
+
+.detail > ul {
+  margin-bottom: 2rem;
+}
+
+.detail > ul > li {
+  margin-bottom: .5rem;
+  font-size: 14px;
+}
+
+.detail > ul > li > span {
+  font-weight: 600;
+  margin-right: .25rem;
+}
+
+.detail > div > span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+
+.list-border-countries {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.list-border-countries > li {
+  padding: .25rem 1rem;
+  margin: .25rem .5rem 0 0;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }

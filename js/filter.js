@@ -3,13 +3,11 @@ const addFilterListener = () => {
   const listCountries = document.querySelector('.list-countries');
   const allCountries = [...listCountries.children];
   const clonedList = [...listCountries.children];
-  let filter = '';
-
+  
   for (let i = 0; i < divOptions.length; i++) {
     const divOption = divOptions[i];
 
     divOption.addEventListener('click', (e) => {
-      console.log(e.currentTarget.getAttribute('data-value'));
       const region = e.currentTarget.getAttribute('data-value');
 
 
@@ -33,9 +31,6 @@ const addFilterListener = () => {
             return country.name.official;
           });
 
-          console.log(clonedList);
-          console.log(onlyNames);
-
           const filteredList = clonedList.filter(country => {
             return onlyNames.includes(country.children[1].innerHTML);
           });
@@ -44,43 +39,7 @@ const addFilterListener = () => {
           
           for (let j = 0; j < filteredList.length; j++) {
             listCountries.appendChild(filteredList[j]);
-          }
-
-          /*
-
-          json.forEach(filteredCountry => {
-            const listItem = document.createElement('li');
-            listItem.classList.add('item-country');
-            
-            const imgCountry = document.createElement('img');
-            imgCountry.src = filteredCountry.flags.png;
-            imgCountry.classList.add('img-flag');
-            imgCountry.alt = `flag of ${filteredCountry.name.official}`;
-
-            const name = document.createElement('h2');
-            name.innerText = filteredCountry.name.official;
-
-            const information = document.createElement('div');
-            information.classList.add('div-information');
-
-            const population = document.createElement('div');
-            population.innerHTML = `<span>Population:</span>${filteredCountry.population}`;
-
-            const region = document.createElement('div');
-            region.innerHTML = `<span>Region:</span>${filteredCountry.region}`;
-
-            const capital = document.createElement('div');
-            capital.innerHTML = `<span>Capital:</span>${filteredCountry.capital}`;
-
-            information.append(population, region, capital);
-
-            listItem.append(imgCountry, name, information);
-
-            newListCountries.append(listItem);
-          });
-
-          listCountries.replaceWith(newListCountries);
-          */
+          }        
         } else {
           console.log('Error filtering');
         }
@@ -91,3 +50,21 @@ const addFilterListener = () => {
     });
   }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  const containerFilter = document.querySelector('.container-filter');
+  const btnBack = document.getElementById('btn-back');
+
+  btnBack.addEventListener('click', () => {
+    const listCountries = document.querySelector('.list-countries');
+    const divDetail = document.querySelector('.detail');
+    const divSelect = document.querySelector('div.select');
+
+    containerFilter.classList.remove('filter-hidden');
+    divSelect.classList.remove('hide');
+    listCountries.classList.remove('hide');
+    btnBack.classList.add('hide');
+
+    divDetail.remove();
+  });
+});

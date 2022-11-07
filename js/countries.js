@@ -1,5 +1,4 @@
 const createDetailPage = (objCountry) => {
-  console.log(objCountry);
   const divDetail = document.createElement('div');
   divDetail.classList.add('detail');
 
@@ -32,7 +31,7 @@ const createDetailPage = (objCountry) => {
   const detailInfo2 = document.createElement('ul');
   detailInfo2.innerHTML = `
     <li>
-      <span>Top Level Domain:</span>${objCountry.topLevelDomain[0]}
+      <span>Top Level Domain:</span>${objCountry.topLevelDomain}
     </li>
     <li>
       <span>Currencies:</span>${objCountry.currencies[0].name}
@@ -42,29 +41,45 @@ const createDetailPage = (objCountry) => {
     </li>
   `;
 
-  const divBorderCountries = document.createElement('div');
-  divBorderCountries.innerHTML = `
-  <span>Border Countries:</span>`;
+  divDetail.append(detailImg, detailHeader, detailInfo1, detailInfo2);
 
-  const ulBorderCountries = document.createElement('ul');
-  ulBorderCountries.classList.add('list-border-countries');
+  if (objCountry.borders) {
+    const divBorderCountries = document.createElement('div');
+    divBorderCountries.innerHTML = `
+    <span>Border Countries:</span>`;
+  
+    const ulBorderCountries = document.createElement('ul');
+    ulBorderCountries.classList.add('list-border-countries');
 
-  const regionalBloc = objCountry.regionalBlocs[0].acronym;
-  const alpha3code = objCountry.alpha3Code;
+    objCountry.borders.forEach(borderCountry => {
+      const item = document.createElement('li');
+      let countryInfo;
+      const http = new XMLHttpRequest();
+      http.onload = () => {
+        countryInfo = JSON.parse(http.response);
+        item.innerHTML = countryInfo.name;
+      };
 
-  const request = new XMLHttpRequest();
+      http.open('GET', `https://restcountries.com/v2/alpha/${borderCountry}`);
+      http.send();
 
-  request.onload = () => {
-    const response = JSON.parse(request.response);
-    console.log(response);
+      item.addEventListener('click', () => {
+        const main = document.querySelector('main');
+        const currentDetail = document.querySelector('.detail');
+        const divDetail = createDetailPage(countryInfo);
+
+        currentDetail.remove();
+        main.appendChild(divDetail);
+      });
+
+
+      ulBorderCountries.appendChild(item);
+    });
+
+    divBorderCountries.appendChild(ulBorderCountries);
+    divDetail.appendChild(divBorderCountries)
   }
 
-  // `https://restcountries.com/v2//${regionalBloc.toLowerCase()}/${alpha3Code.toLowerCase()}`
-  request.open('GET', `https://restcountries.com/v2/alpha/${alpha3code.toLowerCase()}`);
-  request.send();
-
-
-  divDetail.append(detailImg, detailHeader, detailInfo1, detailInfo2, divBorderCountries);
 
   return divDetail;
 }
@@ -101,23 +116,28 @@ const populateCountriesList = (countries, listCountries) => {
     listItem.addEventListener('click', (e) => {
       e.preventDefault();
       const main = document.querySelector('main');
+      const divFilter = document.querySelector('.container-filter');
+      const divSelect = document.querySelector('.select');
+      const btnBack = document.getElementById('btn-back');
       listCountries.classList.add('hide');
 
-      console.log(e.currentTarget);
       const name = e.currentTarget.children[1].innerHTML;
 
       const http = new XMLHttpRequest();
 
       http.onload = () => {
         response = JSON.parse(http.response);
-        const country = response[0];  
+        const country = response[0];
        
         const detailPage = createDetailPage(country);
 
         main.append(detailPage);
+        divFilter.classList.add('filter-hidden');
+        divSelect.classList.add('hide');
+        btnBack.classList.remove('hide');
       }
 
-      http.open('GET', `https://restcountries.com/v3.1/name/${name}`);
+      http.open('GET', `https://restcountries.com/v2/name/${name}`);
       http.send();
     });
 
