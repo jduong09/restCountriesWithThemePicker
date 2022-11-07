@@ -5,11 +5,17 @@ body {
   color: hsl(200, 15%, 8%);
 }
 
+body.dark {
+  color: hsl(0, 0%, 100%) !important;
+  background-color: hsl(207, 26%, 17%) !important;
+}
+
 .hide {
   display: none !important;
 }
 
-header > button, .select > .header > svg, .select[data-open] > .header > svg, .select > datalist > .option, #btn-back, .item-country {
+header > button, .select > .header > svg, .select[data-open] > .header > svg,
+.select > datalist > .option, #btn-back, .item-country, .list-border-countries > li {
   cursor: pointer;
 }
 
@@ -19,6 +25,10 @@ header {
   display: flex;
   justify-content: space-between;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+body.dark header {
+  background-color: hsl(209, 23%, 22%);
 }
 
 h1 {
@@ -53,14 +63,27 @@ form > svg {
   transform: translate(-50%, -50%);
 }
 
+body.dark form > svg > path {
+  fill: #FFFFFF;
+}
+
 #input-search {
   width: 100%;
   padding: .5rem 0rem .5rem 5rem;
+  border-radius: 5px;
+}
+
+body.dark #input-search {
+  background-color: hsl(209, 23%, 22%);
 }
 
 #input-search::placeholder {
   font-size: 14px;
   color: hsla(200, 15%, 8%, .25);
+}
+
+body.dark #input-search::placeholder {
+  color: hsl(0, 0%, 100%);
 }
 
 #input-search:active, #input-search:focus, select:active, select:focus {
@@ -102,6 +125,10 @@ form > svg {
   transform: rotate(180deg);
 }
 
+body.dark .select > .header > svg > path {
+  fill: #FFFFFF;
+}
+
 .select > datalist {
   display: none;
   appearance: none;
@@ -112,6 +139,7 @@ form > svg {
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
   border-radius: 5px;
 }
+
 
 .select[data-open] > datalist {
   display: initial;
@@ -129,9 +157,13 @@ form > svg {
 }
 
 .select > datalist > .option {
-  background-color: white;
+  background-color: hsl(0, 0%, 100%);
   cursor: pointer;
   padding: 0.25rem .5rem;
+}
+
+body.dark .select > datalist > .option {
+  background-color: hsl(209, 23%, 22%);
 }
 
 .select > datalist > .option:first-of-type {
@@ -151,13 +183,29 @@ form > svg {
   color: white;
 }
 
+body.dark .select > datalist > .option:hover,
+body.dark .select > datalist > .option:focus,
+body.dark .select > datalist > .option:checked {
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(200, 15%, 8%);
+}
+
 .select > datalist > .option[data-checked] {
   background-color: hsl(200, 15%, 8%);
-  color: white;
+  color: hsl(0, 0%, 100%);
+}
+
+body.dark .select > datalist > .option[data-checked] {
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(200, 15%, 8%);
 }
 
 .label {
   padding: 0.25em;
+}
+
+body.dark .container-filter {
+  background-color: hsl(209, 23%, 22%);
 }
 
 .container-filter.filter-hidden {
@@ -168,6 +216,10 @@ form > svg {
   display: flex;
   align-items: center;
   padding: .5rem 1rem;
+}
+
+body.dark #btn-back > svg > path {
+  fill: hsl(0, 0%, 100%);
 }
 
 #arrow-left {
@@ -181,9 +233,12 @@ form > svg {
 
 .item-country {
   margin: 2rem 0;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-radius: 5px;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+body.dark .item-country {
+  background-color: hsl(209, 23%, 22%);
 }
 
 .item-country > img {
@@ -251,4 +306,8 @@ form > svg {
   padding: .25rem 1rem;
   margin: .25rem .5rem 0 0;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+body.dark .list-border-countries > li {
+  background-color: hsl(209, 23%, 22%);
 }
