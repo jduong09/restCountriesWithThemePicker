@@ -116,6 +116,7 @@ const populateCountriesList = (countries, listCountries) => {
     listItem.addEventListener('click', (e) => {
       e.preventDefault();
       const main = document.querySelector('main');
+      const divForm = document.querySelector('.div-form');
       const divFilter = document.querySelector('.container-filter');
       const divSelect = document.querySelector('.select');
       const btnBack = document.getElementById('btn-back');
@@ -132,6 +133,7 @@ const populateCountriesList = (countries, listCountries) => {
         const detailPage = createDetailPage(country);
 
         main.append(detailPage);
+        divForm.classList.add('hide');
         divFilter.classList.add('filter-hidden');
         divSelect.classList.add('hide');
         btnBack.classList.remove('hide');

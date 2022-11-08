@@ -52,6 +52,7 @@ const addFilterListener = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  const divForm = document.querySelector('.div-form');
   const containerFilter = document.querySelector('.container-filter');
   const btnBack = document.getElementById('btn-back');
 
@@ -60,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const divDetail = document.querySelector('.detail');
     const divSelect = document.querySelector('div.select');
 
+    divForm.classList.remove('hide');
     containerFilter.classList.remove('filter-hidden');
     divSelect.classList.remove('hide');
     listCountries.classList.remove('hide');

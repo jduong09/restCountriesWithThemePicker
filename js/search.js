@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main');
+  const divForm = document.querySelector('.div-form');
   const divFilter = document.querySelector('.container-filter');
   const divSelect = document.querySelector('.select');
   const btnBack = document.getElementById('btn-back');
@@ -11,6 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     const inputCountry = inputSearch.value;
+
+    if (!inputCountry) {
+      return false;
+    }
 
     const http = new XMLHttpRequest();
 
@@ -25,10 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         main.append(detailPage);
+        divForm.classList.add('hide');
         divFilter.classList.add('filter-hidden');
         divSelect.classList.add('hide');
         btnBack.classList.remove('hide');
         listCountries.classList.add('hide');
+
+        inputSearch.value = '';
       } else {
         console.log('Incorrect input');
       }
