@@ -45,7 +45,7 @@ const addFilterListener = () => {
         }
       }
 
-      http.open('GET', `https://restcountries.com/v3.1/region/${region}`);
+      http.open('GET', `https://restcountries.com/v2/region/${region}`);
       http.send();
     });
   }
