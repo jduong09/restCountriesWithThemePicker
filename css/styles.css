@@ -70,8 +70,9 @@ body.dark form > svg > path {
 
 #input-search {
   width: 100%;
-  padding: .5rem 0rem .5rem 5rem;
+  padding: 1rem 0rem 1rem 5rem;
   border-radius: 5px;
+  font-size: 14px;
 }
 
 body.dark #input-search {
@@ -97,6 +98,7 @@ body.dark #input-search::placeholder {
 #input-search:-webkit-autofill:focus, 
 #input-search:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
+    box-shadow: 0 0 0 30px white inset !important;
 }
 
 .container-filter {
@@ -119,14 +121,13 @@ body.dark #input-search::placeholder {
   display: flex;
   flex: 1;
   align-items: center;
-  padding: .5rem 1rem;
+  padding: 1rem 1.5rem;
   position: relative;
   width: auto;
 }
 
 .select > .header > span {
   flex: 1;
-  padding: 0.5em;
 }
 
 .select[data-open] > .header > svg {
@@ -252,6 +253,7 @@ body.dark .item-country {
 
 .item-country > img {
   display: block;
+  height: 50%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -277,29 +279,30 @@ body.dark .item-country {
 
 .detail > img {
   display: block;
+  height: auto;
 }
 
-.detail > h2 {
+.detail > div > h2 {
   font-weight: 900;
   margin: 1.5rem 0;
   font-size: 1.25rem;
 }
 
-.detail > ul {
+.detail > div > ul {
   margin-bottom: 2rem;
 }
 
-.detail > ul > li {
+.detail > div > ul > li {
   margin-bottom: .5rem;
   font-size: 14px;
 }
 
-.detail > ul > li > span {
+.detail > div > ul > li > span {
   font-weight: 600;
   margin-right: .25rem;
 }
 
-.detail > div > span {
+.detail > div > div > span {
   display: block;
   font-weight: 600;
   margin-bottom: .5rem;
@@ -319,4 +322,141 @@ body.dark .item-country {
 
 body.dark .list-border-countries > li {
   background-color: hsl(209, 23%, 22%);
+}
+
+@media (min-width: 576px) {
+  .list-countries {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .item-country {
+    width: 47%;
+  }
+
+  .detail > img {
+    width: 80%;
+  }
+}
+
+@media (min-width: 767px) {
+  .detail > img {
+    width: 65%;
+  }
+}
+
+@media (min-width: 922px) {
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .div-form {
+    width: 45%;
+    margin: 0 0 2rem 0;
+  }
+
+  .container-filter {
+    width: 20%;
+    margin: 0 0 2rem 0;
+  }
+
+  .list-countries {
+    flex: 1 100%;
+  }
+
+
+  .item-country {
+    width: 30%;
+    margin: 1.5rem 0;
+  }
+
+  .detail {
+    flex: 1 100%;
+  }
+
+  .detail > img {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1200px) {
+  header {
+    padding: 1.5rem 3rem;
+  }
+
+  main {
+    padding: 3rem;
+  }
+  .div-form {
+    width: 40%;
+  }
+
+  .container-filter {
+    width: 18.5%;
+  }
+
+  .detail > img, .detail > div {
+    width: 47%;
+  }
+
+  .detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .detail > div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .detail > div > h2, .detail > div > div {
+    flex: 1 100%;
+  }
+
+  .detail > div > ul {
+    flex: 2 50%;
+  }
+}
+
+@media (min-width: 1400px) {
+  header {
+    padding: 1.5rem 4.5rem;
+  }
+
+  main {
+    padding: 4.5rem;
+  }
+
+  .item-country {
+    width: 21%;
+  }
+
+  .detail > img, .detail > div {
+    width: 46%;
+  }
+
+  .detail > div > h2 {
+    font-size: 2rem;
+    margin-top: 0;
+  }
+
+  .detail > div > ul > li {
+    font-size: 1rem;
+  }
+
+  .detail > div > div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .detail > div > div > span {
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
 }

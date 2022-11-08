@@ -6,6 +6,8 @@ const createDetailPage = (objCountry) => {
   detailImg.src = objCountry.flags.png;
   detailImg.alt = `flag of ${objCountry.name}`;
 
+  const divInfo = document.createElement('div');
+
   const detailHeader = document.createElement('h2');
   detailHeader.innerHTML = objCountry.name;
 
@@ -41,7 +43,8 @@ const createDetailPage = (objCountry) => {
     </li>
   `;
 
-  divDetail.append(detailImg, detailHeader, detailInfo1, detailInfo2);
+  divInfo.append(detailHeader, detailInfo1, detailInfo2);
+  divDetail.append(detailImg, divInfo);
 
   if (objCountry.borders) {
     const divBorderCountries = document.createElement('div');
@@ -77,7 +80,7 @@ const createDetailPage = (objCountry) => {
     });
 
     divBorderCountries.appendChild(ulBorderCountries);
-    divDetail.appendChild(divBorderCountries)
+    divInfo.appendChild(divBorderCountries);
   }
 
 
