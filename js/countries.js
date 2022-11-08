@@ -92,10 +92,10 @@ const populateCountriesList = (countries, listCountries) => {
     const imgCountry = document.createElement('img');
     imgCountry.src = country.flags.png;
     imgCountry.classList.add('img-flag');
-    imgCountry.alt = `flag of ${country.name.official}`;
+    imgCountry.alt = `flag of ${country.name}`;
 
     const name = document.createElement('h2');
-    name.innerText = country.name.official;
+    name.innerText = country.name;
 
     const information = document.createElement('div');
     information.classList.add('div-information');
@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  http.open('GET', 'https://restcountries.com/v3.1/all');
+  http.open('GET', 'https://restcountries.com/v2/all');
   http.send();
-
 });
